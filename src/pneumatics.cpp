@@ -5,7 +5,7 @@
 
 Pneumatics::Pneumatics()
 //  : clampPiston1(PNEUMATIC_PORT_1), clampPiston2(PNEUMATIC_PORT_2), clampOpen(false) {}
-    : clampPiston1(PNEUMATIC_PORT_1), clampOpen(true) {}
+    : clampPiston1(PNEUMATIC_PORT_1), clampOpen(false) {}
 
 void Pneumatics::controlClamp() {
     if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)) {
