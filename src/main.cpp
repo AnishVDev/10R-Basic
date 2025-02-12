@@ -62,50 +62,78 @@ pros::Controller master(pros::E_CONTROLLER_MASTER);
 Drivetrain drivetrain;
 Intake intake;
 Pneumatics pneumatics;
+LadyBrown ladyBrown;
 
 void initialize() {
     // Initialization code here
 }
+
+/**Misalaneous
+
+void autonomous() {
+    drivetrain.autonomousDrive(-400, 100);
+}
+*/
 
 /**
 Right Side Auton
 */
 void autonomous() {
     drivetrain.autonomousDrive(2000, 100);
-    pros::delay(1000);
+    pros::delay(1100);
     pneumatics.setClampState(true);
     pros::delay(1000);        // Delay to ensure the clamp has time  to actuate
     intake.setIntake(130);          // Turn intake on
     pros::delay(500);        // Run intake for 0.5 seconds
-    intake.stopIntake();                  // Stop the intake
-    pros::delay(500);
-    drivetrain.autonomousDrive(2000, 100);
-    pros::delay(2000);
-    drivetrain.autonomousTurn(200, 110, true);  // Turn 125 degrees at a speed of 100 to the right
-/**
-    pneumatics.setClampState(false);
-    pros::delay(100);
-    drivetrain.autonomousDrive(-1800, 100);
-    pros::delay(900);
-    drivetrain.autonomousTurn(125, 100, true);  // Turn 125 degrees at a speed of 100 to the right
-    pros::delay(2000);                                     // Wait for 2 seconds to complete the turn
-    drivetrain.autonomousDrive(-1800, 100);
-    pros::delay(900);
-    drivetrain.autonomousDrive(1800, 100);
-    pros::delay(900);
-    drivetrain.autonomousDrive(-1900, 100);
-    pros::delay(900);
-    drivetrain.autonomousDrive(1800, 100);
-    pros::delay(900);
-    drivetrain.autonomousDrive(-2000, 100);
-*/
+    drivetrain.autonomousTurn(55, 110, true);
+    pros::delay(1000);
+    drivetrain.autonomousDrive(-1500, 100);
+    pros::delay(5000);
+    drivetrain.autonomousTurn(135, 110, true);
+    pros::delay(1000);
+    drivetrain.autonomousDrive(-3400, 50);
+    pros::delay(2300);
+    intake.stopIntake();  // Stop the intake
 }
 
+
+/**
+Left Side Auton
+
+void autonomous() {
+    drivetrain.autonomousDrive(2000, 100);
+    pros::delay(1100);
+    pneumatics.setClampState(true);
+    pros::delay(1000);        // Delay to ensure the clamp has time  to actuate
+    intake.setIntake(130);          // Turn intake on
+    pros::delay(500);        // Run intake for 0.5 seconds
+    drivetrain.autonomousTurn(65, 120, false);
+    pros::delay(1000);
+    drivetrain.autonomousDrive(-1400, 100);
+    pros::delay(5000);
+    drivetrain.autonomousTurn(130, 120, false);
+    pros::delay(1000);
+    drivetrain.autonomousDrive(-3500, 50);
+    pros::delay(2000);
+    intake.stopIntake();  // Stop the intake
+}
+*/
 void opcontrol() {
     while (true) {
         drivetrain.driveControl();
         intake.controlIntake();
         pneumatics.controlClamp();
+        // Lady Brown Toggle
+        if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
+            ladyBrown.moveToPosition(130); // Move arm to 130 degrees
+        }
+        if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
+            ladyBrown.moveToPosition(0); // Move arm to 0 degrees (retract)
+        }
+        // If "B" button is pressed, stop the motor
+        if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+            ladyBrown.stopMotor();
+        }
         pros::delay(20);
     }
 }
