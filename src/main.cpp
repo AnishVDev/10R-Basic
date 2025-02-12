@@ -41,16 +41,20 @@
  * Right Joystick (Horizontal): Controls rotation of the drivetrain (left/right).
  *
  * Controller Settings:
- * R1: Press once to start the intake moving forward. Press again to stop the intake (if it's already running forward).
- * R2: Press once to start the intake moving in reverse. Press again to stop the intake (if it's already running in reverse).
- * L1: Opens the clamp by activating the pistons.
- * L2: Closes the clamp by deactivating the pistons.
+ * R1 - Press once to start the intake moving forward. Press again to stop the intake (if it's already running forward).
+ * R2 - Press once to start the intake moving in reverse. Press again to stop the intake (if it's already running in reverse).
+ * L1 - Opens the clamp by activating the pistons.
+ * L2 - Closes the clamp by deactivating the pistons.
+ * X - Extend lady brown
+ * B - Retract lady brown
  *
  * Motor Settings:
- * Motor Ports: 1-6 (left ports: 1, 2, and 3; right ports: 4, 5, and 6)
+ * Motor Ports: Ports 1-6 (left ports: 1, 2, and 3; right ports: 4, 5, and 6)
  * Intake Port: Port 7
+ * Lady Brown Port: Port 10
  * Pneumatics (Clamp Pistons): ADI Port A
  * Controller: USB Ports to wirelessly connect to VEX Brain
+ * 
  */
 
 #include "main.h"
@@ -68,7 +72,7 @@ void initialize() {
     // Initialization code here
 }
 
-/**Misalaneous
+/**Miscellaneous
 
 void autonomous() {
     drivetrain.autonomousDrive(-400, 100);
