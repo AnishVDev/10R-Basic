@@ -82,7 +82,7 @@ void autonomous() {
     pros::delay(1000);        // Delay to ensure the clamp has time  to actuate
     intake.setIntake(130);          // Turn intake on
     pros::delay(500);        // Run intake for 0.5 seconds
-    drivetrain.autonomousTurn(55, 110, true);
+    drivetrain.autonomousTurn(88, 110, true);
     pros::delay(1000);
     drivetrain.autonomousDrive(-1200, 100);
     pros::delay(1100);
