@@ -2,7 +2,7 @@
 
 #include "intake.h"
 
-int intakeSpeed = 125;
+int intakeSpeed = 155;
 
 Intake::Intake() 
     : intakeMotor(INTAKE_MOTOR_PORT),

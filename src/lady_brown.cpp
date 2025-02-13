@@ -6,7 +6,7 @@ LadyBrown::LadyBrown()
 
 // Moves the arm to a specific position (in degrees)
 void LadyBrown::moveToPosition(int targetPosition) {
-    ladyBrownMotor.move_absolute(targetPosition, 100); // Move to target at 100 velocity
+    ladyBrownMotor.move_absolute(targetPosition, 3000); // Move to target at 100 velocity
     currentPosition = targetPosition; // Update current position after command
 }
 

@@ -72,17 +72,46 @@ void initialize() {
     // Initialization code here
 }
 
-/**Miscellaneous
-
-void autonomous() {
-    drivetrain.autonomousDrive(-400, 100);
-}
+/**Skills
 */
+void autonomous() {
+    ladyBrown.moveToPosition(-1200);
+    drivetrain.autonomousDrive(600, 100);
+    pros::delay(200);
+    pneumatics.setClampState(true);
+    pros::delay(1000);        // Delay to ensure the clamp has time  to actuate
+    intake.setIntake(130);          // Turn intake on
+    pros::delay(500);        // Run intake for 0.5 seconds
+    drivetrain.autonomousTurn(55, 110, true);
+    pros::delay(1000);
+    drivetrain.autonomousDrive(-1200, 100);
+    pros::delay(1100);
+    drivetrain.autonomousDrive(-200, 100);
+    pros::delay(400);
+    drivetrain.autonomousTurn(55, 110, true);
+    pros::delay(700);
+    drivetrain.autonomousDrive(-300, 100);
+    pros::delay(1000);
+    drivetrain.autonomousTurn(82.5, 110, true);
+    pros::delay(1000);
+    drivetrain.autonomousDrive(-2000, 100);
+    pros::delay(1100);
+    drivetrain.autonomousTurn(55, 110, false);
+    pros::delay(700);
+    drivetrain.autonomousDrive(-1800, 100);
+    pros::delay(800);
+    drivetrain.autonomousTurn(27.5, 110, true);
+    pros::delay(700);
+    drivetrain.autonomousDrive(2300, 100);
+    pros::delay(1200);
+}
+
 
 /**
 Right Side Auton
-*/
+
 void autonomous() {
+    ladyBrown.moveToPosition(1200);
     drivetrain.autonomousDrive(2000, 100);
     pros::delay(1100);
     pneumatics.setClampState(true);
@@ -99,12 +128,13 @@ void autonomous() {
     pros::delay(2300);
     intake.stopIntake();  // Stop the intake
 }
-
+*/
 
 /**
 Left Side Auton
 
 void autonomous() {
+    ladyBrown.moveToPosition(1200);
     drivetrain.autonomousDrive(2000, 100);
     pros::delay(1100);
     pneumatics.setClampState(true);
@@ -122,6 +152,7 @@ void autonomous() {
     intake.stopIntake();  // Stop the intake
 }
 */
+
 void opcontrol() {
     while (true) {
         drivetrain.driveControl();
@@ -129,7 +160,7 @@ void opcontrol() {
         pneumatics.controlClamp();
         // Lady Brown Toggle
         if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
-            ladyBrown.moveToPosition(130); // Move arm to 130 degrees
+            ladyBrown.moveToPosition(-3000); // Move arm to 130 degrees
         }
         if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
             ladyBrown.moveToPosition(0); // Move arm to 0 degrees (retract)
